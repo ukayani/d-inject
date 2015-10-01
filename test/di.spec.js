@@ -7,6 +7,8 @@ describe('di', function () {
 
   it('.set and .get', function () {
 
+    di.reset();
+
     function dep() {
       return {name: 'Bob'};
     }
@@ -20,6 +22,8 @@ describe('di', function () {
   });
 
   it('.set existing dependency', function () {
+
+    di.reset();
 
     function depD() {
       return {name: 'D'};
@@ -37,6 +41,8 @@ describe('di', function () {
   });
 
   it('.inject', function () {
+
+    di.reset();
 
     function depB() {
       return {name: 'DepB'};
@@ -58,6 +64,8 @@ describe('di', function () {
 
   it('.get should return cached dependency', function () {
 
+    di.reset();
+
     let spy = sinon.spy(function () {
       return {name: 'dep'};
     });
@@ -73,6 +81,38 @@ describe('di', function () {
 
     // should only call our factory method once
     expect(spy.calledOnce).to.be.ok;
+
+  });
+
+  it('.reset should remove single dependencies', function () {
+
+    di.reset();
+
+    function depA() {
+      return {name: 'A'};
+    }
+
+    function depB() {
+      return {name: 'B'};
+    }
+
+    di.set('depA', depA);
+    di.set('depB', depB);
+
+    // lets make sure this dependency gets cached
+    let depAObj1 = di.get('depA');
+    expect(depAObj1.name).to.equal('A');
+
+    di.reset('depA');
+    di.reset('depB');
+
+    di.set('depA', depA);
+    di.set('depB', depB);
+
+    let depAObj2 = di.get('depA');
+    expect(depAObj2.name).to.equal('A');
+    let depBObj = di.get('depB');
+    expect(depBObj.name).to.equal('B');
 
   });
 
