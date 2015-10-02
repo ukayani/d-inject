@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kayaniu/d-inject.git"
+    "url": "git+https://github.com/ukayani/d-inject.git"
   },
   "keywords": [
     "dependency",
@@ -18,9 +18,9 @@
   "author": "kayaniu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kayaniu/d-inject/issues"
+    "url": "https://github.com/ukayani/d-inject/issues"
   },
-  "homepage": "https://github.com/kayaniu/d-inject#readme",
+  "homepage": "https://github.com/ukayani/d-inject#readme",
   "devDependencies": {
     "chai": "^3.3.0",
     "gulp": "^3.9.0",
