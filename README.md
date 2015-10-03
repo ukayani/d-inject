@@ -1,7 +1,7 @@
 # d-inject
 
 ## Overview
-d-inject is an opinionated way to manage and organize dependencies in Node.JS projects. This project has been inspired by Java dependency injection libraries like Google's Guice and Spring Framework. This uses the singleton pattern along with lazy-loading for efficiency.
+d-inject is an opinionated way to manage and organize dependencies in Node.JS projects. This project has been inspired by Java dependency injection libraries like Google Guice and Spring Framework. This uses the singleton pattern along with lazy-loading for efficiency.
 
 ## Explanation
 <strong>createInjector</strong> creates a dependency injection container for you to manage dependencies. You can have many dependency injection containers
