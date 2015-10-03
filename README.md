@@ -57,10 +57,101 @@ injectorInstance.set('bInstance', function() { return b });
 
 // note a relies on b, I can go to the dependency injection container and ask for b
 let configuredA = injectorInstance.inject(a, 'bInstance');
+
+// let's inject the configuredA object into the container instance
+injectorInstance.set('aInstance', function() { return configuredA });
+
 configuredA.doSomething('Hello');
 # ------
 # Hello
 # ------
 ```
 
-This was a simple example. 
+This was a simple example to illustrate the functionality. Let's take a look at something you are likely to encounter when using this in your projects
+
+```
+controller.js
+-------------
+function controller(deps) {
+
+  assert.object(deps.service, 'service is missing');
+  
+  return function(req, res, next) {
+    let id = req.params.id;
+    //using dependency here
+    let result = service.get(id);
+    res.send({'result': result});
+  }
+}
+
+module.exports = controller;
+```
+
+```
+service.js
+-------------
+function service(deps) {
+  assert.object(deps.runtimeDep, 'runtimeDep is missing');
+  
+  //getFromDbSync implementation not shown
+  
+  return function(id) {
+    //using dependency here
+    return getFromDbSync(id, deps.runtimeDep);
+  }
+}
+
+module.exports = service;
+```
+
+So `service` has a runtime dependency. However, `controller` knows ahead of time that it needs `service` as its direct dependency. <strong>We can configure what we know ahead of time but we won't execute it until runtime when we have all our dependencies</strong>
+
+```
+configureAOT.js
+---------------
+
+function register(diContainer) {
+    function controller() {
+        let controllerClass = require('./controller');
+        return diContainer.inject(controllerClass, 'service');
+    }
+    
+    // registration 
+    // remember we use factory functions to enable lazy-loading
+    diContainer.set('controller', controller); 
+}
+
+module.exports = register;
+```
+
+Note we did not configure service as it has a runtime dependency.
+
+Let's say we are running our application so you can see how runtime dependencies are being set
+
+```
+
+
+main.js
+-------
+let injectorInstance = require('d-inject).createInjector();
+
+let dbInfo = process.env.DBINFO;    //runtime dependency (obtain DBINFO from environment variable)
+
+// configure service now that we have the runtime information
+let service = require('./service');
+
+// configure service (at runtime)
+injectorInstance.set('service', function() { service({runtimeDep: dbInfo}); })
+
+// now call register
+let staticDeps = require('configureAOT');
+staticDeps(injectorInstance);
+
+// now everything is configured!
+// remember controller returns a function that handles requests
+http.createServer(injectorInstance.get('controller'));  
+server.listen();
+```
+
+This made our code simpler. We were able to hook up dependencies in an organized fashion. 
+
