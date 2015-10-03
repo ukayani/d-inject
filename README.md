@@ -144,7 +144,7 @@ let service = require('./service');
 injectorInstance.set('service', function() { service({runtimeDep: dbInfo}); })
 
 // now call register
-let staticDeps = require('configureAOT');
+let staticDeps = require('./configureAOT');
 staticDeps(injectorInstance);
 
 // now everything is configured!
