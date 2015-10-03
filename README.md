@@ -129,8 +129,6 @@ Note we did not configure service as it has a runtime dependency.
 Let's say we are running our application so you can see how runtime dependencies are being set
 
 ```
-
-
 main.js
 -------
 let injectorInstance = require('d-inject).createInjector();
