@@ -49,4 +49,18 @@ There are two ways we can use the `d-inject` library to make our lives easier. L
 main.js
 -------
 let a = require('./a');
+let b = require('./b');
+let injectorInstance = require('d-inject).createInjector();
+
+// lets load b into the injector, I can retrieve it by asking the injector for bInstance
+injectorInstance.set('bInstance', function() { return b });
+
+// note a relies on b, I can go to the dependency injection container and ask for b
+let configuredA = injectorInstance.inject(a, 'bInstance');
+configuredA.doSomething('Hello');
+# ------
+# Hello
+# ------
 ```
+
+This was a simple example. 
