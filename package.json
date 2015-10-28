@@ -20,6 +20,13 @@
   "bugs": {
     "url": "https://github.com/ukayani/d-inject/issues"
   },
+  "contributors": [
+    {
+      "name": "Calvin Lee",
+      "email": "cfernandes@loyalty.com",
+      "url": "https://github.com/referentiallytransparent"
+    }
+  ],
   "homepage": "https://github.com/ukayani/d-inject#readme",
   "devDependencies": {
     "chai": "^3.3.0",
