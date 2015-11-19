@@ -1,6 +1,6 @@
 {
   "name": "d-inject",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Simple DI container for singleton dependencies",
   "main": "lib/di.js",
   "scripts": {
