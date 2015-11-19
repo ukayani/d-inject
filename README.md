@@ -12,7 +12,7 @@ d-inject is an opinionated way to manage and organize dependencies in Node.JS pr
 
 <strong>set</strong> will set a dependency into the DI container. set takes two arguments. The name of the dependency and the (factory) <strong>function that produces the object</strong>. Note that this little detail allows us to implement lazy loading (so we don't load it until we absolutely have to - a technique taken from functional data structures for infinite sequences). 
 
-<strong>inject</strong> is a convenience method. The first argument is a function (single argument) that takes in dependencies as its arguments, the rest of the arguments (variadic) are the dependency names that the function requires as arguments. The Depndency Injection mechanism will inspect the dependencies that the function requires, create an object with the dependencies as properties and call the function with its arguments and returns it.
+<strong>inject</strong> is a convenience method. The first argument is a function (single argument) that takes in dependencies as its arguments, the rest of the arguments (variadic) are the dependency names that the function requires as arguments. The Dependency Injection mechanism will inspect the dependencies that the function requires, create an object with the dependencies as properties and call the function with its arguments and returns it.
 
 ## Examples
 
@@ -154,4 +154,3 @@ server.listen();
 ```
 
 This made our code simpler. We were able to hook up dependencies in an organized fashion. 
-
