@@ -1,5 +1,6 @@
 # d-inject
 [![Dependency Status](https://david-dm.org/ukayani/d-inject.svg?style=flat-square)](https://david-dm.org/ukayani/d-inject)
+[![Build Status](https://travis-ci.org/ukayani/d-inject.svg?branch=master)](https://travis-ci.org/ukayani/d-inject)
 
 ## Overview
 d-inject is an opinionated way to manage and organize dependencies in Node.JS projects. This project has been inspired by Java dependency injection libraries like Google Guice and Spring Framework. This uses the singleton pattern along with lazy-loading for efficiency.
