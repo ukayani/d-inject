@@ -1,5 +1,5 @@
 # d-inject
-[![Dependency Status](https://david-dm.org/ukayani/d-inject.svg?style=flat-square)](https://david-dm.org/ukayani/d-inject)
+[![Dependency Status](https://david-dm.org/ukayani/d-inject.svg)](https://david-dm.org/ukayani/d-inject)
 [![Build Status](https://travis-ci.org/ukayani/d-inject.svg?branch=master)](https://travis-ci.org/ukayani/d-inject)
 
 ## Overview
