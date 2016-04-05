@@ -38,10 +38,12 @@ As you can see the `function a`, has a dependency on `b`. If `b` is not present 
 ```
 b.js
 ----
-module.exports = function(greeting) {
-    console.log('------');
-    console.log(greeting);
-    console.log('------');
+module.exports = {
+    hello: function(greeting) {
+            console.log('------');
+            console.log(greeting);
+            console.log('------');
+           }
 };
 ```
 
